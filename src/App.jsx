@@ -17,7 +17,7 @@ import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Learning-Management-System">
       <Header />
 
       <Routes>

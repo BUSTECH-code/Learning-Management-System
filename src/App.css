@@ -1,286 +1,253 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* ==========================================
+   1. MODERN DESIGN SYSTEM & VARIABLES
+   ========================================== */
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Color Palette - Premium Slate & Indigo Tech Aesthetic */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
+  
+  /* Utilities */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
-
+/* ==========================================
+   2. GLOBAL NAVIGATION HEADER
+   ========================================== */
 .header {
-  background: #1e293b;
-  color: white;
-  padding: 20px;
+  background: #0f172a; /* Deep elegant slate background */
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header h1 {
-  margin-bottom: 15px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.025em;
+  background: linear-gradient(to right, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 nav {
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
 nav a {
-  color: white;
+  color: #94a3b8;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
 }
 
-nav a:hover {
-  color: #38bdf8;
+nav a:hover, nav a.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================
+   3. COURSE PAGE LAYOUT (RESPONSIVE)
+   ========================================== */
+.course-details {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--primary);
+  transform: translateX(-4px);
+}
+
+.course-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.03em;
+}
+
+/* Modern Two-Column Layout Grid */
+.course-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Stack vertically on mobile first */
+  gap: 32px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .course-layout {
+    grid-template-columns: 2.8fr 1.2fr; /* Perfect balanced layout ratio */
+  }
+}
+
+/* ==========================================
+   4. VIDEO SECTION & IFRAME FIX
+   ========================================== */
+.video-section {
+  width: 100%;
+}
+
+/* Foolproof aspect-ratio wrapper prevents breaking on resize */
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; 
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+}
+
+.video-section iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================
+   5. PLAYLIST & LESSON ITEMS
+   ========================================== */
+.playlist {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.playlist h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .lesson-list {
   list-style: none;
   padding: 0;
-}
-
-.lesson-item {
+  margin: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 15px;
-  margin: 10px 0;
-
-  border: 1px solid #ddd;
-  border-radius: 10px;
-}
-
-.lesson-item button {
-  padding: 8px 16px;
-}
-
-.course-details {
-  max-width: 1400px;
-  margin: auto;
-  padding: 30px;
-}
-
-.back-link {
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.course-header {
-  margin-bottom: 25px;
-}
-
-.course-layout {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 25px;
-}
-
-.video-section iframe {
-  width: 100%;
-  height: 600px;
-  border: none;
-  border-radius: 12px;
-}
-
-.playlist {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .lesson {
-  padding: 15px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
+  transition: var(--transition);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
 }
 
 .lesson:hover {
-  background: #f1f1f1;
+  border-color: var(--border-hover);
+  background: var(--bg-app);
+  transform: translateY(-1px);
 }
 
 .lesson.active {
-  background: #2563eb;
-  color: white;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
 }
 
+/* Modern Button styling inside standard lessons */
+.lesson button, .lesson-item button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lesson button:hover, .lesson-item button:hover {
+  background: var(--primary-hover);
+}
+
+.lesson.active button {
+  background: #ffffff;
+  color: var(--primary);
+}
+
+/* ==========================================
+   6. MISC COMPONENT FEEDBACK
+   ========================================== */
 .enrollment-warning {
   text-align: center;
-  padding: 50px;
+  padding: 64px 32px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+/* Keeping minimal legacy classes unharmed but cleaned up */
+.counter {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  background: var(--primary-light);
+  display: inline-block;
+  font-weight: 600;
 }
