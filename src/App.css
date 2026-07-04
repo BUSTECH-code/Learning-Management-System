@@ -284,3 +284,323 @@ nav a:hover {
   text-align: center;
   padding: 50px;
 }
+
+
+
+/* Custom Global Variables for your Palette */
+:root {
+  --bg-slate-900: #0f172a;
+  --bg-slate-800: #1e293b;
+  --text-slate-100: #f8fafc;
+  --text-slate-400: #94a3b8;
+  --primary-indigo: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent-emerald: #10b981;
+}
+
+body {
+  background-color: var(--bg-slate-900);
+  color: var(--text-slate-100);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+}
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* ================= HERO SECTION ================= */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 2rem 0 5rem 0;
+}
+
+@media (max-width: 968px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+}
+
+.badge {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem 0;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  color: var(--text-slate-400);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 968px) {
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-indigo);
+  color: white;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-slate-800);
+  color: var(--text-slate-100);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Hero Graphical Mockups */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.visual-card {
+  background-color: var(--bg-slate-800);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.main-card {
+  width: 100%;
+  max-width: 340px;
+  height: 200px;
+}
+
+.card-header-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.red { background-color: #ef4444; }
+.yellow { background-color: #f59e0b; }
+.green { background-color: #10b981; }
+
+.skeleton-line {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+.skeleton-line.title { width: 60%; height: 16px; margin-bottom: 1.25rem;}
+.skeleton-line.body { height: 10px; }
+.skeleton-line.body.long { width: 90%; }
+.skeleton-line.body.short { width: 45%; }
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  margin-top: 2rem;
+}
+
+.progress-bar-fill {
+  width: 68%;
+  height: 100%;
+  background-color: var(--primary-indigo);
+  border-radius: 999px;
+}
+
+.badge-card {
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #1e1b4b;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-card h4 { margin: 0; font-size: 0.95rem; }
+.badge-card p { margin: 0; font-size: 0.75rem; color: #a5b4fc; }
+
+.icon-wrapper {
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-wrapper.purple { background-color: rgba(139, 92, 246, 0.2); color: #c084fc; }
+
+/* ================= STATS RIBBON ================= */
+.stats-ribbon {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--bg-slate-800);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 640px) {
+  .stats-ribbon {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  .border-x { border: none !important; }
+}
+
+.stat-item h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: var(--text-slate-100);
+}
+
+.stat-item p {
+  color: var(--text-slate-400);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.border-x {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 4rem;
+}
+
+/* ================= TRACKS SECTION ================= */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: var(--text-slate-400);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.track-card {
+  background-color: var(--bg-slate-800);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.track-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.track-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.track-icon.blue { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.track-icon.indigo { background-color: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
+.track-icon.emerald { background-color: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+.track-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+
+.track-card p {
+  color: var(--text-slate-400);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.track-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-indigo);
+  background-color: rgba(99, 102, 241, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+}
