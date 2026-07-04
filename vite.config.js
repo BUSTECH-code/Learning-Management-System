@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import process from 'node:process' // 👈 This explicitly imports process to bypass the build errors!
 
 export default defineConfig({
   plugins: [react()],
-  // Uses global environment checking to safely support both Vercel and GitHub Pages
-  base: typeof globalThis.process !== 'undefined' && globalThis.process.env.VERCEL ? '/' : '/Learning-Management-System/',
+  // If built on Vercel, deploy to root domain. Otherwise, use the GitHub Pages subfolder path.
+  base: process.env.VERCEL ? '/' : '/Learning-Management-System/',
 })
