@@ -16,8 +16,9 @@ import InstructorDashboard from "./pages/InstructorDashboard";
 import AdminPanel from "./pages/AdminPanel";
 
 function App() {
+  const isGitHubPages = window.location.hostname.includes('github.io');
   return (
-    <BrowserRouter basename="/Learning-Management-System">
+    <BrowserRouter basename={isGitHubPages ? '/Learning-Management-System' : ''}>
       <Header />
 
       <Routes>
