@@ -15,13 +15,13 @@ function Courses() {
     localStorage.setItem("courses", JSON.stringify(courses));
   }, [courses]);
 
-  // 💡 1. Fetch current user from localStorage to read their account role
+  // Fetch current user from localStorage to read their account role
   const [currentUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // 💡 2. Control visibility state for the instructor form layout
+  // Control visibility state for the instructor form layout
   const [showCreator, setShowCreator] = useState(false);
 
   // ================= INSTRUCTOR FORM STATES =================
@@ -117,7 +117,6 @@ function Courses() {
 
     setCourses([brandNewCourse, ...courses]);
 
-    // Reset Form Fields completely and collapse form panel
     setNewTitle("");
     setNewDescription("");
     setNewInstructor("");
@@ -128,13 +127,12 @@ function Courses() {
     alert("🎉 Course created successfully with a multi-question evaluation quiz!");
   };
 
-  // Computed dashboard totals
   const totalCourses = courses.length;
   const enrolledCourses = courses.filter((course) => course.enrolled).length;
   const completedCourses = courses.filter((course) => course.progress >= 100).length;
 
   return (
-    <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
+    <div className="lms-page-container">
       {/* Metrics Counter Dashboard */}
       <Dashboard 
         totalCourses={totalCourses} 
@@ -142,55 +140,46 @@ function Courses() {
         completedCourses={completedCourses} 
       />
 
-      {/* 💡 INSTRUCTOR CONTROL ACTION (Only visible to Instructor accounts) */}
+      {/* INSTRUCTOR CONTROL ACTION Button */}
       {currentUser?.role === "instructor" && (
-        <div style={{ margin: "20px 0", display: "flex", justifyContent: "flex-end" }}>
+        <div className="action-bar-right">
           <button
             onClick={() => setShowCreator(!showCreator)}
-            style={{
-              padding: "12px 24px",
-              backgroundColor: showCreator ? "#6c757d" : "#007bff",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              fontWeight: "bold",
-              cursor: "pointer",
-              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-            }}
+            className={`btn-studio-toggle ${showCreator ? "active-close" : ""}`}
           >
-            {showCreator ? "✕ Close Course Creator" : "✨ Open Course Creator Studio"}
+            {showCreator ? "✕ Close Creator Studio" : "✨ Open Course Creator Studio"}
           </button>
         </div>
       )}
 
-      {/* --- CONDITIONAL INSTRUCTOR CREATION CONTROL DESK --- */}
+      {/* CONDITIONAL INSTRUCTOR CREATION PANEL */}
       {currentUser?.role === "instructor" && showCreator && (
-        <div style={{ background: "#f8f9fa", border: "1px solid #dee2e6", borderRadius: "8px", padding: "25px", margin: "20px 0" }}>
-          <h2 style={{ marginTop: 0, color: "#333" }}>🛠️ Instructor Desk: Create New Course</h2>
+        <div className="instructor-desk-panel">
+          <h2>🛠️ Instructor Desk: Create New Course</h2>
           
-          <form onSubmit={handleCreateCourse} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-            <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
-              <input type="text" placeholder="Course Title (e.g., Advanced JavaScript)" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} style={{ flex: 1, padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }} />
-              <input type="text" placeholder="Instructor Name" value={newInstructor} onChange={(e) => setNewInstructor(e.target.value)} style={{ flex: 1, padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }} />
+          <form onSubmit={handleCreateCourse} className="studio-form">
+            <div className="form-row-twin">
+              <input type="text" placeholder="Course Title (e.g., Advanced JavaScript)" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} className="studio-input" />
+              <input type="text" placeholder="Instructor Name" value={newInstructor} onChange={(e) => setNewInstructor(e.target.value)} className="studio-input" />
             </div>
 
-            <textarea placeholder="Course Overview Description..." value={newDescription} onChange={(e) => setNewDescription(e.target.value)} style={{ padding: "10px", borderRadius: "4px", border: "1px solid #ccc", minHeight: "60px" }} />
+            <textarea placeholder="Course Overview Description..." value={newDescription} onChange={(e) => setNewDescription(e.target.value)} className="studio-textarea" />
             
-            <h3 style={{ margin: "10px 0 5px 0", color: "#495057" }}>📚 Initial Lesson Config</h3>
-            <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
-              <input type="text" placeholder="Lesson Title (e.g., Intro to Scope)" value={newLessonTitle} onChange={(e) => setNewLessonTitle(e.target.value)} style={{ flex: 1, padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }} />
-              <input type="text" placeholder="Video Embed URL (YouTube embed link)" value={newVideoUrl} onChange={(e) => setNewVideoUrl(e.target.value)} style={{ flex: 1, padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }} />
+            <h3 className="sub-section-title">📚 Initial Lesson Config</h3>
+            <div className="form-row-twin">
+              <input type="text" placeholder="Lesson Title (e.g., Intro to Scope)" value={newLessonTitle} onChange={(e) => setNewLessonTitle(e.target.value)} className="studio-input" />
+              <input type="text" placeholder="Video Embed URL (YouTube embed link)" value={newVideoUrl} onChange={(e) => setNewVideoUrl(e.target.value)} className="studio-input" />
             </div>
 
             {/* DYNAMIC QUIZ BUILDER ARRAY SECTION */}
-            <h3 style={{ margin: "15px 0 5px 0", color: "#495057" }}>📝 Assessment Quiz Creator</h3>
+            <h3 className="sub-section-title">📝 Assessment Quiz Creator</h3>
             
             {quizQuestions.map((qItem, qIdx) => (
-              <div key={qIdx} style={{ padding: "15px", background: "#fff", border: "1px solid #e2e8f0", borderRadius: "6px", position: "relative" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-                  <span style={{ fontWeight: "bold", color: "#007bff" }}>Question #{qIdx + 1}</span>
+              <div key={qIdx} className="quiz-creator-card">
+                <div className="quiz-card-header">
+                  <span className="question-number-badge">Question #{qIdx + 1}</span>
                   {quizQuestions.length > 1 && (
-                    <button type="button" onClick={() => handleRemoveQuestionField(qIdx)} style={{ background: "none", border: "none", color: "#dc3545", cursor: "pointer", fontWeight: "bold" }}>
+                    <button type="button" onClick={() => handleRemoveQuestionField(qIdx)} className="btn-remove-question">
                       ✕ Remove Question
                     </button>
                   )}
@@ -201,10 +190,10 @@ function Courses() {
                   placeholder="Type the question query string here..." 
                   value={qItem.question} 
                   onChange={(e) => handleQuestionTextChange(qIdx, e.target.value)} 
-                  style={{ width: "100%", padding: "10px", marginBottom: "12px", borderRadius: "4px", border: "1px solid #cbd5e1", boxSizing: "border-box" }} 
+                  className="studio-input full-width-input" 
                 />
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "12px" }}>
+                <div className="quiz-options-grid">
                   {qItem.options.map((opt, oIdx) => (
                     <input 
                       key={oIdx}
@@ -212,7 +201,7 @@ function Courses() {
                       placeholder={`Option ${String.fromCharCode(65 + oIdx)}`} 
                       value={opt} 
                       onChange={(e) => handleOptionTextChange(qIdx, oIdx, e.target.value)} 
-                      style={{ padding: "8px", borderRadius: "4px", border: "1px solid #cbd5e1" }} 
+                      className="studio-input" 
                     />
                   ))}
                 </div>
@@ -222,29 +211,25 @@ function Courses() {
                   placeholder="Paste the EXACT text string of the correct answer option..." 
                   value={qItem.correctAnswer} 
                   onChange={(e) => handleCorrectAnswerChange(qIdx, e.target.value)} 
-                  style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ffccd5", background: "#fffefe", boxSizing: "border-box" }} 
+                  className="studio-input correct-answer-input" 
                 />
               </div>
             ))}
 
-            <button 
-              type="button" 
-              onClick={handleAddQuestionField} 
-              style={{ width: "fit-content", alignSelf: "flex-start", padding: "8px 16px", backgroundColor: "#6c757d", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "500" }}
-            >
+            <button type="button" onClick={handleAddQuestionField} className="btn-secondary-studio">
               ＋ Add Another Question
             </button>
 
-            <button type="submit" style={{ padding: "12px", backgroundColor: "#28a745", color: "white", border: "none", borderRadius: "4px", fontWeight: "bold", fontSize: "1rem", cursor: "pointer", marginTop: "10px" }}>
+            <button type="submit" className="btn-primary-publish">
               Publish Whole Course Package
             </button>
           </form>
         </div>
       )}
 
-      {/* --- STUDENT CATALOG BOARD DISPLAY --- */}
-      <h2 style={{ borderBottom: "2px solid #eee", paddingBottom: "10px", color: "#333", marginTop: "30px" }}>Available Course Catalog</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "20px", marginTop: "20px" }}>
+      {/* STUDENT CATALOG BOARD DISPLAY */}
+      <h2 className="catalog-section-title">Available Course Catalog</h2>
+      <div className="catalog-layout-grid">
         {courses.map((course) => (
           <CourseCard 
             key={course.id} 
