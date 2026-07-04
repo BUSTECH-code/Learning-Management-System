@@ -88,7 +88,7 @@ function CourseDetails() {
           Enroll Now & Unlock Content
         </button>
         <div className="gateway-footer">
-          <Link to="/courses" className="back-link-muted">← Return to Catalog</Link>
+          <Link to="/login" className="back-link-muted">← Return to Catalog</Link>
         </div>
       </div>
     );
